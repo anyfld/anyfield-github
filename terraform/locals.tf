@@ -11,12 +11,12 @@ locals {
       visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
-    "vistra-schema" = {}
+    "vistra-schema"                 = {}
     "vistra-operation-control-room" = {}
-    "vistra-infra" = {}
-    "vistra-exective-producer" = {}
-    "vistra-camera-operator" = {}
-    "vistra-director" = {}
+    "vistra-infra"                  = {}
+    "vistra-exective-producer"      = {}
+    "vistra-camera-operator"        = {}
+    "vistra-director"               = {}
   }
 
   repository_defaults = {
