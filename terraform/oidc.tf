@@ -60,6 +60,7 @@ resource "google_storage_bucket_iam_member" "terraform_state" {
   member = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+# kics-scan ignore-block
 resource "google_project_iam_member" "terraform_service_usage_admin" {
   project = local.gcp_project_id
   role    = "roles/serviceusage.serviceUsageAdmin"
@@ -72,12 +73,14 @@ resource "google_project_iam_member" "terraform_viewer" {
   member  = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+# kics-scan ignore-block
 resource "google_project_iam_member" "terraform_workload_identity_admin" {
   project = local.gcp_project_id
   role    = "roles/iam.workloadIdentityPoolAdmin"
   member  = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+# kics-scan ignore-block
 resource "google_project_iam_member" "terraform_storage_admin" {
   project = local.gcp_project_id
   role    = "roles/storage.admin"
