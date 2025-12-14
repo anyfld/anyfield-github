@@ -6,6 +6,10 @@ terraform {
       source  = "integrations/github"
       version = "~> 6.0"
     }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 6.0"
+    }
   }
 
   backend "gcs" {
@@ -15,6 +19,11 @@ terraform {
 }
 
 provider "github" {
-  owner = var.github_owner
+  owner = local.github_owner
+}
+
+provider "google" {
+  project = local.gcp_project_id
+  region  = local.gcp_region
 }
 

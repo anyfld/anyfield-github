@@ -1,14 +1,3 @@
-variable "repositories" {
-  type        = any
-  default     = {
-    "anyfield-github" = {
-      visibility       = "public"
-      ruleset_presets = ["main_branch_protection"]
-    }
-  }
-  description = "Map of repository configurations"
-}
-
 module "repositories" {
   source   = "./modules/github-repository"
   for_each = local.repositories

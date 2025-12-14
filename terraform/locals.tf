@@ -1,4 +1,18 @@
 locals {
+  github_owner          = "anyfld"
+  github_repository_name = "anyfield-github"
+
+  gcp_project_id = "anyfield"
+  gcp_region      = "us-central1"
+  gcs_bucket_name = "anyfield-github-terraform"
+
+  repositories_config = {
+    "anyfield-github" = {
+      visibility       = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+  }
+
   repository_defaults = {
     description            = ""
     visibility             = "private"
@@ -60,7 +74,7 @@ locals {
   }
 
   repositories = {
-    for name, config in var.repositories : name => merge(
+    for name, config in local.repositories_config : name => merge(
       local.repository_defaults,
       config,
       {
