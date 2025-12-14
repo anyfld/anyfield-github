@@ -116,6 +116,8 @@ jobs:
         run: |
           cd terraform
           terraform init
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Terraform Plan
         id: plan
         run: |
@@ -123,6 +125,8 @@ jobs:
           terraform plan -no-color -out=tfplan > plan_output.txt 2>&1 || true
           terraform show -no-color tfplan >> plan_output.txt 2>&1 || true
         continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Prepare comment message
         run: |
           cd terraform

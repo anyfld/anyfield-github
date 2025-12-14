@@ -1,10 +1,3 @@
-resource "google_project_service" "cloudresourcemanager" {
-  project = local.gcp_project_id
-  service = "cloudresourcemanager.googleapis.com"
-
-  disable_on_destroy = false
-}
-
 resource "google_project_service" "required_apis" {
   for_each = toset([
     "iamcredentials.googleapis.com",
@@ -17,8 +10,6 @@ resource "google_project_service" "required_apis" {
   service = each.value
 
   disable_on_destroy = false
-
-  depends_on = [google_project_service.cloudresourcemanager]
 }
 
 resource "google_iam_workload_identity_pool" "github" {
@@ -47,8 +38,6 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.environment"      = "assertion.environment"
   }
 
-  # Security condition: Only allow access from specific repository
-  # This ensures that untrusted repositories cannot request access tokens
   attribute_condition = "assertion.repository_owner == \"${local.github_owner}\" && assertion.repository == \"${local.github_owner}/${local.github_repository_name}\""
 
   oidc {
@@ -79,8 +68,6 @@ resource "google_service_account_iam_member" "github_actions_impersonate" {
 
 data "google_project" "project" {
   project_id = local.gcp_project_id
-
-  depends_on = [google_project_service.cloudresourcemanager]
 }
 
 resource "github_actions_secret" "wif_provider" {
