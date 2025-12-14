@@ -1,5 +1,5 @@
 variable "repositories" {
-  type    = any
+  type = any
   default = {
     "anyfield-github" = {
       ruleset_presets = ["main_branch_protection"]
