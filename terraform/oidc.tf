@@ -19,7 +19,7 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.repository_owner" = "assertion.repository_owner"
     "attribute.ref"              = "assertion.ref"
     "attribute.workflow"         = "assertion.workflow"
-    "attribute.environment"       = "assertion.environment"
+    "attribute.environment"      = "assertion.environment"
   }
 
   attribute_condition = "assertion.repository_owner == \"${local.github_owner}\" && assertion.repository.startsWith(\"${local.github_owner}/\")"
@@ -44,8 +44,8 @@ resource "google_storage_bucket_iam_member" "terraform_state" {
 
 resource "google_service_account_iam_member" "github_actions_impersonate" {
   service_account_id = google_service_account.terraform.name
-  role                = "roles/iam.workloadIdentityUser"
-  member              = "principal://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github.workload_identity_pool_id}/subject/repo:${local.github_owner}/${local.github_repository_name}:*"
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "principal://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github.workload_identity_pool_id}/subject/repo:${local.github_owner}/${local.github_repository_name}:*"
 }
 
 data "google_project" "project" {

@@ -87,7 +87,7 @@ variable "archive_on_destroy" {
 }
 
 variable "rulesets" {
-  type        = list(object({
+  type = list(object({
     name        = string
     target      = string
     enforcement = string

@@ -1,5 +1,5 @@
 output "repositories" {
-  value       = {
+  value = {
     for name, repo in module.repositories : name => {
       name           = repo.repository_name
       full_name      = repo.repository_full_name

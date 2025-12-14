@@ -44,7 +44,7 @@ output "default_branch" {
 }
 
 output "rulesets" {
-  value       = {
+  value = {
     for name, ruleset in github_repository_ruleset.this : name => {
       id          = ruleset.id
       node_id     = ruleset.node_id

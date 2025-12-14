@@ -1,14 +1,14 @@
 locals {
-  github_owner          = "anyfld"
+  github_owner           = "anyfld"
   github_repository_name = "anyfield-github"
 
-  gcp_project_id = "anyfield"
+  gcp_project_id  = "anyfield"
   gcp_region      = "us-central1"
   gcs_bucket_name = "anyfield-github-terraform"
 
   repositories_config = {
     "anyfield-github" = {
-      visibility       = "public"
+      visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
   }
