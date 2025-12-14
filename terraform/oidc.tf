@@ -1,8 +1,24 @@
+resource "google_project_service" "required_apis" {
+  for_each = toset([
+    "iamcredentials.googleapis.com",
+    "iam.googleapis.com",
+    "storage.googleapis.com",
+    "storage-api.googleapis.com",
+  ])
+
+  project = local.gcp_project_id
+  service = each.value
+
+  disable_on_destroy = false
+}
+
 resource "google_iam_workload_identity_pool" "github" {
   project                   = local.gcp_project_id
   workload_identity_pool_id = "github-actions-pool"
   display_name              = "GitHub Actions Pool"
   description               = "Workload Identity Pool for GitHub Actions OIDC authentication"
+
+  depends_on = [google_project_service.required_apis]
 }
 
 resource "google_iam_workload_identity_pool_provider" "github" {
@@ -22,10 +38,12 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.environment"      = "assertion.environment"
   }
 
-  attribute_condition = "assertion.repository_owner == \"${local.github_owner}\" && assertion.repository.startsWith(\"${local.github_owner}/\")"
-
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
+  }
+
+  lifecycle {
+    ignore_changes = [attribute_condition]
   }
 }
 
