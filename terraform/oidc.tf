@@ -72,6 +72,18 @@ resource "google_project_iam_member" "terraform_viewer" {
   member  = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_project_iam_member" "terraform_workload_identity_admin" {
+  project = local.gcp_project_id
+  role    = "roles/iam.workloadIdentityPoolAdmin"
+  member  = "serviceAccount:${google_service_account.terraform.email}"
+}
+
+resource "google_project_iam_member" "terraform_storage_admin" {
+  project = local.gcp_project_id
+  role    = "roles/storage.admin"
+  member  = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_service_account_iam_member" "github_actions_impersonate" {
   service_account_id = google_service_account.terraform.name
   role               = "roles/iam.workloadIdentityUser"
