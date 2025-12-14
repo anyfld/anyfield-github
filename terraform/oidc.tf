@@ -1,3 +1,10 @@
+resource "google_project_service" "cloudresourcemanager" {
+  project = local.gcp_project_id
+  service = "cloudresourcemanager.googleapis.com"
+
+  disable_on_destroy = false
+}
+
 resource "google_project_service" "required_apis" {
   for_each = toset([
     "iamcredentials.googleapis.com",
@@ -10,6 +17,8 @@ resource "google_project_service" "required_apis" {
   service = each.value
 
   disable_on_destroy = false
+
+  depends_on = [google_project_service.cloudresourcemanager]
 }
 
 resource "google_iam_workload_identity_pool" "github" {
@@ -52,6 +61,8 @@ resource "google_service_account" "terraform" {
   account_id   = "terraform-github-actions"
   display_name = "Terraform GitHub Actions Service Account"
   description  = "Service account for GitHub Actions to run Terraform operations"
+
+  depends_on = [google_project_service.required_apis]
 }
 
 resource "google_storage_bucket_iam_member" "terraform_state" {
@@ -68,6 +79,8 @@ resource "google_service_account_iam_member" "github_actions_impersonate" {
 
 data "google_project" "project" {
   project_id = local.gcp_project_id
+
+  depends_on = [google_project_service.cloudresourcemanager]
 }
 
 resource "github_actions_secret" "wif_provider" {
