@@ -63,7 +63,7 @@ resource "google_storage_bucket_iam_member" "terraform_state" {
 resource "google_service_account_iam_member" "github_actions_impersonate" {
   service_account_id = google_service_account.terraform.name
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principal://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github.workload_identity_pool_id}/subject/repo:${local.github_owner}/${local.github_repository_name}:*"
+  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.project.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.github.workload_identity_pool_id}/attribute.repository/${local.github_owner}/${local.github_repository_name}"
 }
 
 data "google_project" "project" {
