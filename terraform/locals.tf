@@ -52,7 +52,7 @@ locals {
           strict_required_status_checks_policy = false
           required_checks = [
             { context = "all-status-check", integration_id = 15368 },
-            { context = "ci-req-check", integration_id = 15368 }
+            { context = "validate-pull-request", integration_id = 15368 },
           ]
         }
       }
