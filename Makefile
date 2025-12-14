@@ -1,4 +1,4 @@
-.PHONY: init plan apply destroy fmt validate lint
+.PHONY: init plan apply destroy fmt validate lint kics
 
 export GITHUB_OWNER := anyfld
 
@@ -22,3 +22,6 @@ validate:
 
 lint:
 	cd terraform && tflint --recursive
+
+kics:
+	docker run -t -v $(PWD):/path checkmarx/kics scan -p /path
