@@ -1,0 +1,6 @@
+# KICS ignore file
+# Ignore Service Account with Improper Privileges warnings for required admin roles
+terraform/oidc.tf:66:cefdad16-0dd5-4ac5-8ed2-a37502c78672
+terraform/oidc.tf:79:cefdad16-0dd5-4ac5-8ed2-a37502c78672
+terraform/oidc.tf:86:cefdad16-0dd5-4ac5-8ed2-a37502c78672
+
