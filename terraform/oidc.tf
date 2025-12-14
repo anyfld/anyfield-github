@@ -38,12 +38,12 @@ resource "google_iam_workload_identity_pool_provider" "github" {
     "attribute.environment"      = "assertion.environment"
   }
 
+  # Security condition: Only allow access from specific repository
+  # This ensures that untrusted repositories cannot request access tokens
+  attribute_condition = "assertion.repository_owner == \"${local.github_owner}\" && assertion.repository == \"${local.github_owner}/${local.github_repository_name}\""
+
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"
-  }
-
-  lifecycle {
-    ignore_changes = [attribute_condition]
   }
 }
 
