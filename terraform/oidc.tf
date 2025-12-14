@@ -60,6 +60,18 @@ resource "google_storage_bucket_iam_member" "terraform_state" {
   member = "serviceAccount:${google_service_account.terraform.email}"
 }
 
+resource "google_project_iam_member" "terraform_service_usage_admin" {
+  project = local.gcp_project_id
+  role    = "roles/serviceusage.serviceUsageAdmin"
+  member  = "serviceAccount:${google_service_account.terraform.email}"
+}
+
+resource "google_project_iam_member" "terraform_viewer" {
+  project = local.gcp_project_id
+  role    = "roles/viewer"
+  member  = "serviceAccount:${google_service_account.terraform.email}"
+}
+
 resource "google_service_account_iam_member" "github_actions_impersonate" {
   service_account_id = google_service_account.terraform.name
   role               = "roles/iam.workloadIdentityUser"
