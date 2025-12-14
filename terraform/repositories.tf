@@ -1,10 +1,12 @@
 variable "repositories" {
-  type = any
-  default = {
+  type        = any
+  default     = {
     "anyfield-github" = {
+      visibility       = "public"
       ruleset_presets = ["main_branch_protection"]
     }
   }
+  description = "Map of repository configurations"
 }
 
 module "repositories" {

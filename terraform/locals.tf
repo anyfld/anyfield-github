@@ -1,7 +1,7 @@
 locals {
   repository_defaults = {
     description            = ""
-    visibility             = "public"
+    visibility             = "private"
     has_issues             = true
     has_discussions        = false
     has_projects           = false
