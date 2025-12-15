@@ -11,12 +11,30 @@ locals {
       visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
-    "vistra-schema"                 = {}
-    "vistra-operation-control-room" = {}
-    "vistra-infra"                  = {}
-    "vistra-exective-producer"      = {}
-    "vistra-camera-operator"        = {}
-    "vistra-director"               = {}
+    "vistra-schema"                 = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+    "vistra-operation-control-room" = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+    "vistra-infra"                  = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+    "vistra-exective-producer"      = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+    "vistra-camera-operator"        = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
+    "vistra-director"               = {
+      visibility = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
   }
 
   repository_defaults = {
