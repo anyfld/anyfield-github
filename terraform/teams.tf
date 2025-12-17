@@ -21,7 +21,7 @@ resource "github_team_repository" "vistra_repositories" {
     "vistra-schema",
     "vistra-operation-control-room",
     "vistra-infra",
-    "vistra-exective-producer",
+    "vistra-executive-producer",
     "vistra-camera-operator",
     "vistra-director"
   ])

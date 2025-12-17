@@ -23,7 +23,7 @@ locals {
       visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
-    "vistra-exective-producer" = {
+    "vistra-executive-producer" = {
       visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
