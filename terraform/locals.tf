@@ -69,6 +69,11 @@ locals {
           actor_id    = 5
           actor_type  = "RepositoryRole"
           bypass_mode = "pull_request"
+        },
+        {
+          actor_id    = github_team.vistra_developer.id
+          actor_type  = "Team"
+          bypass_mode = "pull_request"
         }
       ]
       rules = {
