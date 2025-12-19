@@ -35,6 +35,10 @@ locals {
       visibility      = "public"
       ruleset_presets = ["main_branch_protection"]
     }
+    "vistra-pj" = {
+      visibility      = "public"
+      ruleset_presets = ["main_branch_protection"]
+    }
   }
 
   repository_defaults = {
