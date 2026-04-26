@@ -33,7 +33,7 @@ provider "registry.terraform.io/hashicorp/google" {
 
 provider "registry.terraform.io/integrations/github" {
   version     = "6.12.0"
-  constraints = "~> 6.11"
+  constraints = "~> 6.12"
   hashes = [
     "h1:9ZNKML/4Vy+qDFaaUVRnffHXjOpNE0OuisqZt4RojQw=",
     "h1:BURTEZ3GIlrYZNMFf7ejB0wTWGFRhPdV/p4TZMxjJiM=",
